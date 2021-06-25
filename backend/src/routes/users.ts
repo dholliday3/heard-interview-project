@@ -10,4 +10,3 @@ router.get('/', getUsers)
     .delete('/:email', deleteUser)
 
 export default router
-    
