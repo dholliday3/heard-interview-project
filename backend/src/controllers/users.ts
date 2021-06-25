@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import { _mUsersCollection } from '../index'
 import { User } from '../models/User'
+import mongodb, { ObjectId } from 'mongodb'
 
 export const getUsers = async (req: Request, res: Response) => {
     const query = { name: { $gt: 0 } }
@@ -12,12 +13,21 @@ export const getUsers = async (req: Request, res: Response) => {
     res.send(result)
 }
 
-export const getUserByEmail = (req: Request, res: Response) => {
-    
+export const getUserByEmail = async (req: Request, res: Response) => {
+    console.log('req params', req.params)
+    const result = await _mUsersCollection.findOne({ email: req.params.email})
+    console.log('getUserByEmail', result)
+    res.send(result)
 }
 
-export const createUser = (req: Request, res: Response) => {
-    
+export const createUser = async (req: Request, res: Response) => {
+    const data = { name: req.query.name ? req.query.name : 'No Name', 
+        email: req.query.email, pw: req.query.pw, 
+        role: req.query.role ? req.query.role : 'parent', 
+        family: new ObjectId() }; //TODO: handle logic for family id
+    const result = await _mUsersCollection.insertOne(data)
+    console.log('createUser', result)
+    res.send(result)
 }
 
 export const editUser = (req: Request, res: Response) => {
