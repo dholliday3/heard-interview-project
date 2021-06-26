@@ -35,7 +35,6 @@ export const createBudget = async (req: Request, res: Response) => {
     const result = await _mBudgetsCollection.insertOne(data)
 
     // Update family budgets 
-    console.log(req.query.familyName)
     const filter = { familyName: req.query.familyName }
     const options = { upsert: true }
     const updateData = { $push: {
