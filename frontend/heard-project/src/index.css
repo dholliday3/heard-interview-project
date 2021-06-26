@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 code {
@@ -36,6 +38,14 @@ div, h1, h2, h3, h4, h5, h6, header, html, i, img, label, li, nav, p, small, spa
 
 h1 {
   font-size: 22px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 p {
