@@ -2,6 +2,7 @@
 
 ### Running the Backend 
 ```javascript
+cd backend
 npm run serve
 ```
 
@@ -10,5 +11,6 @@ In order to interact with the Mongodb your IP address will need to be allowliste
 
 ### Running the Frontend 
 ```javascript
+cd frontend\heard-project
 yarn run start 
 ```
