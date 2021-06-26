@@ -34,7 +34,7 @@ export const CreateNewBudget = (props) => {
     const classes = useStyles()
 
 
-    const { open, onClose } = props;
+    const { open, onClose, familyName } = props;
     const handleClose = () => {
         onClose()
     }
@@ -59,7 +59,8 @@ export const CreateNewBudget = (props) => {
             const params = new URLSearchParams({
                 category: data.category, 
                 timeframe: data.timeframe, 
-                budgetAmount: data.budgetAmount
+                budgetAmount: data.budgetAmount, 
+                familyName: familyName
             })
 
             const response = await fetch(process.env.REACT_APP_BACKEND_URL + `budgets/?` + params, {
@@ -71,7 +72,7 @@ export const CreateNewBudget = (props) => {
             });
             return response.json()
         }
-        fetchNewBudget({category: category, timeframe: timeframe, budgetAmount: amount})
+        fetchNewBudget({category: category, timeframe: timeframe, budgetAmount: amount, familyName: familyName })
         handleClose()
     }
 

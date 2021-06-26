@@ -104,7 +104,7 @@ export const HomePage = () => {
                     <AddIcon />
                 </Button>
 
-                <CreateNewBudget open={openNewBudget} onClose={handleClose} />
+                <CreateNewBudget open={openNewBudget} onClose={handleClose} familyName={testUser.familyName} />
             </Paper>
    
             <Paper className={classes.yourBudgets}>

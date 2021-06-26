@@ -31,9 +31,18 @@ export const getBudgetsByFamilyName = async (req: Request, res: Response) => {
 export const createBudget = async (req: Request, res: Response) => {
     console.log(req.query)
     const budgetAmt = Number(req.query.budgetAmount)
-    const data = { category: req.query.category, timeframe: req.query.timeframe, budgetAmount: budgetAmt, currentSpend: 0, expenses: [] }
+    const data = { _id: new ObjectId(), category: req.query.category, timeframe: req.query.timeframe, budgetAmount: budgetAmt, currentSpend: 0, expenses: [] }
     const result = await _mBudgetsCollection.insertOne(data)
-    console.log('create budget', result)
+
+    // Update family budgets 
+    console.log(req.query.familyName)
+    const filter = { familyName: req.query.familyName }
+    const options = { upsert: true }
+    const updateData = { $push: {
+        budgets: data._id
+    }}
+    const familyUpdate = await _mFamiliesCollection.updateOne(filter, updateData, options)
+    // console.log('create budget', result)
     res.send(data)
 }
 
